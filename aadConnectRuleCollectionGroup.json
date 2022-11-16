@@ -1,0 +1,218 @@
+{
+    "ruleCollectionGroupName": "rcg-directory-synchronization-service",
+    "priority": 1013,
+    "ruleCollections": [
+        {
+            "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
+            "name": "aadc-application-inbound-allow",
+            "priority": 310,
+            "action": {
+                "type": "Allow"
+            },
+            "rules": []
+        },
+        {
+            "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
+            "name": "aadc-application-outbound-allow",
+            "priority": 330,
+            "action": {
+                "type": "Allow"
+            },
+            "rules": [
+                {
+                    "ruleType": "ApplicationRule",
+                    "name": "Azure AD Auth",
+                    "protocols": [
+                        {
+                            "protocolType": "Https",
+                            "port": 443
+                        }
+                    ],
+                    "fqdnTags": [],
+                    "webCategories": [],
+                    "targetFqdns": [
+                        "aadcdn.msauth.net",
+                        "aadcdn.msftauth.net",
+                        "login.microsoftonline.com",
+                        "adminwebservice.microsoftonline.com",
+                        "provisioningapi.microsoftonline.com",
+                        "login.windows.net",
+                        "secure.aadcdn.microsoftonline-p.com"
+                    ],
+                    "targetUrls": [],
+                    "terminateTLS": false,
+                    "sourceAddresses": [],
+                    "sourceIpGroups": [
+                        "/subscriptions/40dbc44e-49a5-4dfc-a906-c9a214eb66c1/resourceGroups/rg-fwpolicy-weu/providers/Microsoft.Network/ipGroups/ipg-svc-oa-aadc-weu"
+                    ]
+                },
+                {
+                    "ruleType": "ApplicationRule",
+                    "name": "AAD Connect Health",
+                    "protocols": [
+                        {
+                            "protocolType": "Https",
+                            "port": 443
+                        }
+                    ],
+                    "fqdnTags": [],
+                    "webCategories": [],
+                    "targetFqdns": [
+                        "management.azure.com",
+                        "adhssyncprodpksweu.servicebus.windows.net",
+                        "adhsprodweuehsyncia.servicebus.windows.net",
+                        "*.adhybridhealth.azure.com",
+                        "*.aadconnecthealth.azure.com",
+                        "policykeyservice.dc.ad.msft.net",
+                    ],
+                    "targetUrls": [],
+                    "sourceAddresses": [],
+                    "sourceIpGroups": [
+                        "/subscriptions/40dbc44e-49a5-4dfc-a906-c9a214eb66c1/resourceGroups/rg-fwpolicy-weu/providers/Microsoft.Network/ipGroups/ipg-svc-oa-aadc-weu"
+                    ]
+                },
+                {
+                    "ruleType": "ApplicationRule",
+                    "name": "Pass-through authentication",
+                    "protocols": [
+                        {
+                            "protocolType": "Https",
+                            "port": 443
+                        }
+                    ],
+                    "fqdnTags": [],
+                    "webCategories": [],
+                    "targetFqdns": [
+                        "*.msappproxy.net",
+                        "*.servicebus.windows.net"
+                    ],
+                    "targetUrls": [],
+                    "terminateTLS": false,
+                    "sourceAddresses": [],
+                    "sourceIpGroups": [
+                        "/subscriptions/40dbc44e-49a5-4dfc-a906-c9a214eb66c1/resourceGroups/rg-fwpolicy-weu/providers/Microsoft.Network/ipGroups/ipg-svc-oa-aadc-weu"
+                    ]
+                },
+                {
+                    "ruleType": "ApplicationRule",
+                    "name": "Discovery",
+                    "protocols": [
+                        {
+                            "protocolType": "Https",
+                            "port": 443
+                        }
+                    ],
+                    "fqdnTags": [],
+                    "webCategories": [],
+                    "targetFqdns": [
+                        "www.office.com"
+                    ],
+                    "targetUrls": [],
+                    "terminateTLS": false,
+                    "sourceAddresses": [],
+                    "sourceIpGroups": [
+                        "/subscriptions/40dbc44e-49a5-4dfc-a906-c9a214eb66c1/resourceGroups/rg-fwpolicy-weu/providers/Microsoft.Network/ipGroups/ipg-svc-oa-aadc-weu"
+                    ]
+                },
+                {
+                    "ruleType": "ApplicationRule",
+                    "name": "CRL",
+                    "protocols": [
+                        {
+                            "protocolType": "Http",
+                            "port": 80
+                        }
+                    ],
+                    "fqdnTags": [],
+                    "webCategories": [],
+                    "targetFqdns": [
+                        "*.verisign.com",
+                        "*.entrust.net",
+                        "mscrl.microsoft.com",
+                        "crl.microsoft.com",
+                        "ocsp.msocsp.com"
+                    ],
+                    "targetUrls": [],
+                    "terminateTLS": false,
+                    "sourceAddresses": [],
+                    "sourceIpGroups": [
+                        "/subscriptions/40dbc44e-49a5-4dfc-a906-c9a214eb66c1/resourceGroups/rg-fwpolicy-weu/providers/Microsoft.Network/ipGroups/ipg-svc-oa-aadc-weu"
+                    ]
+                },
+                {
+                    "ruleType": "ApplicationRule",
+                    "name": "Certificate revocation",
+                    "protocols": [
+                        {
+                            "protocolType": "Http",
+                            "port": 80
+                        }
+                    ],
+                    "fqdnTags": [],
+                    "webCategories": [],
+                    "targetFqdns": [
+                        "*.crl3.digicert.com",
+                        "*.crl4.digicert.com",
+                        "*.ocsp.digicert.com",
+                        "*.www.d-trust.net",
+                        "*.root-c3-ca2-2009.ocsp.d-trust.net",
+                        "*.crl.microsoft.com",
+                        "*.oneocsp.microsoft.com",
+                        "*.ocsp.msocsp.com"
+                    ],
+                    "targetUrls": [],
+                    "terminateTLS": false,
+                    "sourceAddresses": [],
+                    "sourceIpGroups": [
+                        "/subscriptions/40dbc44e-49a5-4dfc-a906-c9a214eb66c1/resourceGroups/rg-fwpolicy-weu/providers/Microsoft.Network/ipGroups/ipg-svc-oa-aadc-weu"
+                    ]
+                },
+                {
+                    "ruleType": "ApplicationRule",
+                    "name": "SSPR Https",
+                    "protocols": [
+                        {
+                            "protocolType": "Https",
+                            "port": 443
+                        }
+                    ],
+                    "fqdnTags": [],
+                    "webCategories": [],
+                    "targetFqdns": [
+                        "ssprsbprodncu-sb.accesscontrol.windows.net",
+                        "*.servicebus.windows.net",
+                        "*.passwordreset.microsoftonline.com"
+                    ],
+                    "targetUrls": [],
+                    "terminateTLS": false,
+                    "sourceAddresses": [],
+                    "sourceIpGroups": [
+                        "/subscriptions/40dbc44e-49a5-4dfc-a906-c9a214eb66c1/resourceGroups/rg-fwpolicy-weu/providers/Microsoft.Network/ipGroups/ipg-svc-oa-aadc-weu"
+                    ]
+                },
+                {
+                    "ruleType": "ApplicationRule",
+                    "name": "SSPR Http",
+                    "protocols": [
+                        {
+                            "protocolType": "Http",
+                            "port": 80
+                        }
+                    ],
+                    "fqdnTags": [],
+                    "webCategories": [],
+                    "targetFqdns": [
+                        "ssprdedicatedsbprodncu.servicebus.windows.net",
+                        "ssprdedicatedsbprodscu.servicebus.windows.net"
+                    ],
+                    "targetUrls": [],
+                    "terminateTLS": false,
+                    "sourceAddresses": [],
+                    "sourceIpGroups": [
+                        "/subscriptions/40dbc44e-49a5-4dfc-a906-c9a214eb66c1/resourceGroups/rg-fwpolicy-weu/providers/Microsoft.Network/ipGroups/ipg-svc-oa-aadc-weu"
+                    ]
+                }
+            ]
+        }
+    ]
+}
