@@ -5,7 +5,7 @@
         {
             "ruleCollectionType": "FirewallPolicyFilterRuleCollection",
             "name": "aadc-application-inbound-allow",
-            "priority": 310,
+            "priority": 300,
             "action": {
                 "type": "Allow"
             },
